@@ -1,7 +1,7 @@
 TiRemoteControl
 ====
 
-This module makes your titanium applications to extend AV-relationed functions of iOS.
+This module makes your titanium applications to extend AV-related functions of iOS.
 
 - You can handle events of earphone's remote-control. (play, pause, nextTrack and so on.)
 - You can show some information of playing track to a locked screen and etc.
