@@ -110,12 +110,26 @@ MAKE_SYSTEM_PROP(REMOTE_CONTROL_END_SEEK_FORWARD,UIEventSubtypeRemoteControlEndS
     NSString *title = [TiUtils stringValue:@"title" properties:args def:@""];
     NSString *albumTitle = [TiUtils stringValue:@"albumTitle" properties:args def:@""];
 
+    NSString *albumArtwork = [TiUtils stringValue:@"albumArtwork" properties:args def:nil];
+
     Class playingInfoCenter = NSClassFromString(@"MPNowPlayingInfoCenter");
+
     if (playingInfoCenter) {
+
         NSMutableDictionary *songInfo = [[NSMutableDictionary alloc] init];
+
+        if(albumArtwork != nil){
+
+        	UIImage *artworkImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:albumArtwork]]];
+
+	       	MPMediaItemArtwork *albumArt = [[MPMediaItemArtwork alloc] initWithImage:artworkImage];
+	       	[songInfo setObject:albumArt forKey:MPMediaItemPropertyArtwork];
+	    }
+
         [songInfo setObject:artist forKey:MPMediaItemPropertyArtist];
         [songInfo setObject:title forKey:MPMediaItemPropertyTitle];
         [songInfo setObject:albumTitle forKey:MPMediaItemPropertyAlbumTitle];
+
         [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:songInfo];
     }
 }
