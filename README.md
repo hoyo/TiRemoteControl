@@ -6,6 +6,7 @@ This module makes your titanium applications to extend AV-related functions of i
 - You can handle events of earphone's remote-control. (play, pause, nextTrack and so on.)
 - You can show some information of playing track to a locked screen and etc.
 
+- Update : Added albumArtwork (using URL) to lockscreen info. (@Kosso)
 
 How to Use
 ----
@@ -16,7 +17,8 @@ var Control = require('net.hoyohoyo.tiremotecontrol');
 Control.setNowPlayingInfo({
   artist: 'someone',
   title: 'Happy Birthday to You',
-  albumTitle: 'unknown'
+  albumTitle: 'unknown',
+  albumArtwork : 'http://an.image.url'
 });
 
 Control.addEventListener('remotecontrol', function(e) {

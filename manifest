@@ -2,12 +2,13 @@
 # this is your module manifest and used by Titanium
 # during compilation, packaging, distribution, etc.
 #
-version: 0.1
+version: 0.1.2
 apiversion: 2
-description: My module
-author: Your Name
-license: Specify your license
-copyright: Copyright (c) 2013 by Your Company
+architectures: armv7 arm64 i386 x86_64
+description: TiRemoteControl
+author: hoyo (+kosso) (+dieskim)
+license: MIT
+copyright: Copyright (c) 2015
 
 
 # these should not be edited
@@ -15,4 +16,4 @@ name: TiRemoteControl
 moduleid: net.hoyohoyo.tiremotecontrol
 guid: 9326b7d7-f454-4b2d-bd81-1aebcd8ee868
 platform: iphone
-minsdk: 3.0.2.GA
+minsdk: 3.5.0.GA
