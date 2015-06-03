@@ -109,7 +109,7 @@ MAKE_SYSTEM_PROP(REMOTE_CONTROL_END_SEEK_FORWARD,UIEventSubtypeRemoteControlEndS
     NSString *artist = [TiUtils stringValue:@"artist" properties:args def:@""];
     NSString *title = [TiUtils stringValue:@"title" properties:args def:@""];
     NSString *albumTitle = [TiUtils stringValue:@"albumTitle" properties:args def:@""];
-
+    BOOL *albumArtworkLocal = [TiUtils boolValue:@"albumArtworkLocal" properties:args def:@""];
     NSString *albumArtwork = [TiUtils stringValue:@"albumArtwork" properties:args def:nil];
 
     Class playingInfoCenter = NSClassFromString(@"MPNowPlayingInfoCenter");
@@ -119,9 +119,19 @@ MAKE_SYSTEM_PROP(REMOTE_CONTROL_END_SEEK_FORWARD,UIEventSubtypeRemoteControlEndS
         NSMutableDictionary *songInfo = [[NSMutableDictionary alloc] init];
 
         if(albumArtwork != nil){
-
-        	UIImage *artworkImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:albumArtwork]]];
-
+            
+            UIImage *artworkImage = nil;
+            
+            if(albumArtworkLocal){
+                
+                NSString *albumArtworkPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:albumArtwork];
+                
+                artworkImage = [UIImage imageWithContentsOfFile:albumArtworkPath];
+           
+            }else{
+                
+                artworkImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:albumArtwork]]];
+            }
 	       	MPMediaItemArtwork *albumArt = [[MPMediaItemArtwork alloc] initWithImage:artworkImage];
 	       	[songInfo setObject:albumArt forKey:MPMediaItemPropertyArtwork];
 	    }
