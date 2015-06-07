@@ -18,7 +18,9 @@ Control.setNowPlayingInfo({
   artist: 'someone',
   title: 'Happy Birthday to You',
   albumTitle: 'unknown',
-  albumArtwork : 'http://an.image.url'
+  albumArtworkLocal: true,                          // true for LOCAL IMAGE false for REMOTE IMAGE
+  albumArtwork : 'appicon.png',                     // LOCAL IMAGE - Image Name (eg: 'appicon.png') inside resources folder 
+                                                    // REMOTE IMAGE - URL (eg: http://an.image.url)
 });
 
 Control.addEventListener('remotecontrol', function(e) {

@@ -9,3 +9,7 @@
 0.1.2 (Feb 2015)
 ----
 - Added 64Bit Support (@dieskim)
+
+0.1.3 (June 2015)
+----
+- Added Album Artwork Local Path ability (@dieskim)
