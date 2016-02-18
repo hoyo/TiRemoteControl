@@ -111,7 +111,10 @@ MAKE_SYSTEM_PROP(REMOTE_CONTROL_END_SEEK_FORWARD,UIEventSubtypeRemoteControlEndS
     NSString *albumTitle = [TiUtils stringValue:@"albumTitle" properties:args def:@""];
     BOOL *albumArtworkLocal = [TiUtils boolValue:@"albumArtworkLocal" properties:args def:@""];
     NSString *albumArtwork = [TiUtils stringValue:@"albumArtwork" properties:args def:nil];
-
+    NSString *duration = [TiUtils stringValue:@"duration" properties:args def:@""];
+    NSString *elapsed = [TiUtils stringValue:@"elapsed" properties:args def:@"0.0"];
+    NSString *rate = [TiUtils stringValue:@"rate" properties:args def:@"1.0"];
+    
     Class playingInfoCenter = NSClassFromString(@"MPNowPlayingInfoCenter");
 
     if (playingInfoCenter) {
@@ -139,7 +142,10 @@ MAKE_SYSTEM_PROP(REMOTE_CONTROL_END_SEEK_FORWARD,UIEventSubtypeRemoteControlEndS
         [songInfo setObject:artist forKey:MPMediaItemPropertyArtist];
         [songInfo setObject:title forKey:MPMediaItemPropertyTitle];
         [songInfo setObject:albumTitle forKey:MPMediaItemPropertyAlbumTitle];
-
+        [songInfo setObject:duration forKey:MPMediaItemPropertyPlaybackDuration];
+        [songInfo setObject:elapsed forKey:MPNowPlayingInfoPropertyElapsedPlaybackTime];
+        [songInfo setObject:rate forKey:MPNowPlayingInfoPropertyDefaultPlaybackRate];
+        
         [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:songInfo];
     }
 }
